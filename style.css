@@ -1,0 +1,372 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1em;
+    font-family: "Krub";
+}
+
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+body {
+    height: 100vh;
+    background-color: #fdfdfd;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-header-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+    background-color: #0d5782;
+    position: relative;
+}
+
+.main-header-nav-title {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+}
+
+.main-header-nav-title-weather {
+    font-family: "Krona One";
+    color: #fdfdfd;
+    font-size: 50px;
+    padding: 0 10px 0 0;
+}
+
+.main-header-nav-title-wise {
+    font-family: "Krub";
+    color: #fdfdfd;
+    font-size: 40px;
+}
+
+.main-header-nav-logo {
+    width: 140px;
+    position: relative;
+    margin-top: 70px;
+}
+
+.main-city {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 60px;
+    position: relative;
+}
+
+.main-city h3 {
+    color: #0a4363;
+    font-weight: 500;
+    font-size: 25px;
+    font-style: inherit;
+}
+
+.main-city-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.main-city-form input {
+    padding-left: 20px;
+    width: 700px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #d9d9d9;
+}
+
+.main-city-form button {
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+    margin-left: 10px;
+    background-color: #d9d9d9;
+}
+
+.main-clima {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#climaResult {
+    margin-top: 4rem;
+    display: none;
+    background-color: #a3ddff;
+    width: 500px;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px #0a4363;
+    padding: 20px;
+}
+
+.clima-city-name {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-size: xx-large;
+    font-weight: 600;
+    text-shadow: 0px 0px 5px #fdfdfd;
+}
+
+.clima-city-temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    font-size: 50px;
+}
+
+.clima-city-icon {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.clima-city-bot {
+    display: flex;
+    align-items: center;
+    /* Alinha os itens verticalmente no centro */
+    text-align: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: large;
+}
+
+.clima-city-umidade,
+.clima-city-vento {
+    display: flex;
+    align-items: center;
+    /* Alinha os itens verticalmente no centro */
+    margin-top: 30px;
+}
+
+.espacamento {
+    margin: 0 10px;
+    /* Adiciona espaçamento horizontal entre os elementos */
+    margin-top: 30px;
+}
+
+.flag-city {
+    width: 40px;
+    margin: 0 15px;
+}
+
+#pin_map {
+    position: relative;
+    margin-left: 15px;
+    margin-top: 3px;
+}
+
+@media (max-width: 815px) {
+    .main-city-form input {
+        width: 500px;
+    }
+}
+
+@media (max-width: 610px) {
+    .main-city-form input {
+        width: 400px;
+    }
+}
+
+@media (max-width: 565px) {
+    .main-header-nav-title-weather {
+        font-size: 40px;
+    }
+
+    .main-header-nav-title-wise {
+        font-size: 30px;
+    }
+
+    .main-header-nav-logo {
+        width: 120px;
+    }
+
+    #climaResult {
+        width: 400px;
+    }
+
+    .main-city-form input {
+        width: 300px;
+    }
+
+    .main-city-form button {
+        width: 80px;
+    }
+}
+
+@media (max-width: 470px) {
+    .main-header-nav-logo {
+        display: none;
+    }
+
+    #climaResult {
+        width: 350px;
+    }
+}
+
+@media (max-width: 390px) {
+    #climaResult {
+        width: 350px;
+    }
+
+    .main-city-form input {
+        width: 250px;
+    }
+
+    .main-city-form button {
+        width: 70px;
+        font-size: 13px;
+    }
+
+    .main-city h3 {
+        font-size: 20px;
+    }
+
+    .clima-city-temp {
+        font-size: 40px;
+    }
+
+    .clima-city-icon {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 350px) {
+    #climaResult {
+        margin-top: 2rem;
+        margin-bottom: 100px;
+        width: 270px;
+        padding: 20px 10px;
+    }
+
+    .main-city-form input {
+        width: 200px;
+        height: 35px;
+    }
+
+    .main-city h3 {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .main-city-form button {
+        width: 65px;
+        font-size: 13px;
+        height: 35px;
+    }
+
+    .clima-city-temp {
+        font-size: 35px;
+    }
+
+    .clima-city-name {
+        font-size: x-large;
+    }
+
+    .flag-city {
+        width: 30px;
+        margin: 0 10px;
+    }
+
+    .main-header-nav-title-weather {
+        font-size: 35px;
+    }
+
+    .main-header-nav-title-wise {
+        font-size: 25px;
+    }
+}
+
+@media(min-width: 1980px) {
+    .main-header-nav-title-weather {
+        font-size: 75px;
+      }
+      .main-header-nav-title-wise {
+        font-size: 55px;
+      }
+      .main-header-nav-logo {
+          width: 200px;
+          margin-top: 70px;
+      }
+      .main-header-nav {
+          height: 150px;
+      }
+
+      .main-city{
+        margin-top: 150px;
+      }
+    .main-city-form input {
+        width: 1200px;
+        height: 75px;
+        font-size: 30px;
+      }
+      .main-city h3 {
+        font-size: 60px;
+        font-weight: 600;
+      }
+      .main-city-form button {
+        width: 155px;
+        height: 75px;
+        font-size: 25px;
+      }
+
+    #climaResult {
+        margin-top: 7rem;
+        width: 800px;
+        padding: 40px 10px;
+    }
+
+    .clima-city-name {
+        font-size: 60px;
+    }
+
+    .clima-city-temp {
+        padding: 60px 0;
+        font-size: 70px;
+    }
+
+    .clima-city-icon {
+        font-size: 40px;
+        padding: 20px 0;
+    }
+
+    .clima-city-bot {
+        font-size: 35px;
+    }
+    .espacamento {
+        margin: 10 30px;
+    }
+
+    .flag-city {
+        width: 70px;
+    }
+}

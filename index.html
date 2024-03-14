@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherWise - Consulta de Clima</title>
+    <link rel="icon" href="img/siteIcon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Krona+One&family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  </head>
+  <body>
+    <div class="video-container">
+      <video autoplay loop muted>
+        <source src="./img/videoplayback.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <header>
+      <main class="main-header">
+        <nav class="main-header-nav">
+          <div class="main-header-nav-title">
+            <p class="main-header-nav-title-weather">WEATHER</p>
+            <p class="main-header-nav-title-wise">WISE</p>
+          </div>
+          <img
+            src="img/navIcon.png"
+            class="main-header-nav-logo"
+            alt="WeatherWise Logo"
+            title="WeatherWise Logo"
+          />
+        </nav>
+      </main>
+    </header>
+    <!-- <h1>Consulta do Clima Tempo</h1> -->
+
+    <main>
+      <section class="main-city">
+        <h3>Confira o clima de uma cidade</h3>
+        <div class="main-city-form">
+          <form id="formClima">
+            <input type="text" id="cityInput" name="cityInput" />
+            <button type="submit">Consultar</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <main class="main-clima">
+      <div id="climaResult"></div>
+      <div id="loader" class="hide">
+        <i class="fa-solid fa-spinner"></i>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- <main class="main-clima">
+  <div id="climaResult">
+    <div class="clima-city-name">
+      <i class="ph ph-map-pin"></i>
+      <p id="cityResult">${cidadeFormatada}</p>
+    </div>
+    <div class="clima-city-temp">
+      <i class="ph ph-thermometer-simple"></i>
+      <p id="tempResult">${data.Temperatura}ºC</p>
+    </div>
+    <div class="clima-city-umidade">
+      <i class="ph ph-drop"></i>
+      <p id="umidadeResult">${data.Umidade}%</p>
+    </div>
+    <div class="clima-city-vento">
+      <i class="ph ph-wind"></i>
+      <p id="ventoResult">${data.VelocidadeDoVento} m/s</p>
+    </div>
+    <div class="clima-city-icon">
+      <img src="${data.Icone}">
+    </div>
+  </div>
+</main> -->
