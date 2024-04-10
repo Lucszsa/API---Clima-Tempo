@@ -1,107 +1,109 @@
-# Documentação do Sistema de Consulta de Clima
+# DOCUMENTAÇÃO - Clima Tempo
 
-Este documento fornece uma visão geral e instruções de uso para o sistema de consulta de clima, que utiliza a API do OpenWeatherMap.
+## Funcionalidade
 
-## Visão Geral
+A aplicação web permite que os usuários obtenham informações climáticas de uma cidade específica. Os usuários podem digitar o nome de uma cidade no formulário de entrada e submeter o formulário para obter os dados climáticos da cidade.
 
-O sistema de consulta de clima permite aos usuários verificar as condições meteorológicas atuais de uma cidade específica. Ele exibe informações como temperatura, umidade, velocidade do vento e descrição do clima.
+## Recursos Principais
 
-## Funcionamento
+- Obtenção de dados climáticos de uma cidade específica
+- Exibição dos dados climáticos na tela
 
-O sistema é composto por um frontend em HTML/CSS/JavaScript e um backend em Node.js utilizando o framework Express. A comunicação entre o frontend e o backend é feita através de requisições HTTP.
+## Casos de Uso
 
-### Frontend
+- O usuário acessa a aplicação web
+- O usuário digita o nome de uma cidade no formulário de entrada
+- O usuário submeter o formulário
+- A aplicação exibe os dados climáticos da cidade na tela
 
-O frontend consiste em uma página web com um formulário para inserir o nome da cidade desejada. Ao enviar o formulário, o JavaScript executa uma requisição assíncrona para o backend, que retorna os dados meteorológicos da cidade fornecida. Os dados são então exibidos na página.
+## Fluxos de Trabalho
 
-Exemplo de código JavaScript utilizado para enviar a requisição:
+- Acessar a aplicação web
+- Digitar o nome de uma cidade no formulário de entrada
+- Submeter o formulário
+- Aguardar a resposta da API
+- Exibir os dados climáticos na tela
 
-```javascript
-document
-  .getElementById("formClima")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+## Requisitos do Sistema
 
-    const city = document.getElementById("cityInput").value;
-    const cidadeFormatada = city.charAt(0).toUpperCase() + city.slice(1);
+- Navegador web moderno
+- Conexão com a internet
 
-    fetch(`http://localhost:3000/climatempo/${city}`)
-      .then((response) => response.json())
-      .then((data) => {
-        // Manipulação dos dados e atualização da interface
-      });
-  });
+## Arquitetura
 
-**Backend**
+A aplicação web é composta por duas partes principais: um front-end em JavaScript e um back-end em Node.js usando o framework Express.
 
-O backend é responsável por receber a requisição do frontend, consultar a API do OpenWeatherMap para obter os dados meteorológicos da cidade especificada e enviar a resposta de volta para o frontend.
-Exemplo de código Node.js utilizado para lidar com a requisição:
+## Componentes da Aplicação
 
-const express = require("express");
-const axios = require("axios");
-const path = require("path");
-const cors = require("cors");
-const config = require("./config.json");
-const apikey = config.apikey;
+- Front-end: responsável pela interface do usuário e a interação com o usuário.
+- Back-end: responsável pela lógica de negócios e a comunicação com a API do OpenWeatherMap.
 
-const app = express();
-app.listen(3000);
+## Tecnologias Utilizadas
 
-// Configurações do Express
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+- JavaScript
+- HTML
+- CSS
+- Node.js
+- Express
+- OpenWeatherMap API
 
-// Rota para consultar dados meteorológicos
-app.get("/climatempo/:cidade", async (req, res) => {
-  // Obtenção do nome da cidade fornecida na URL
-  const city = req.params.cidade;
+## Estrutura do Banco de Dados
 
-  try {
-    // Requisição à API do OpenWeatherMap
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=pt_br&appid=${apikey}&units=metric`
-    );
+Não há banco de dados nesta aplicação. Os dados climáticos são obtidos da API do OpenWeatherMap.
 
-    if (response.status === 200) {
-      // Formatação dos dados e envio da resposta
-      res.send(formatWeatherData(response.data));
-    } else {
-      // Tratamento de erros
-      res.status(response.status).send({ erro: "Erro ao obter dados meteorológicos" });
-    }
-  } catch (error) {
-    // Tratamento de erros
-    res.status(500).send({ erro: "Erro ao obter dados meteorológicos", error });
-  }
-});
+## Desenvolvimento
 
-// Função para formatar os dados meteorológicos
-function formatWeatherData(data) {
-  const climaFormatado = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1);
-  const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-  const flag = `https://flagsapi.com/${data.sys.country}/flat/64.png`;
+### Processo de Desenvolvimento
 
-  return {
-    Temperatura: data.main.temp,
-    Umidade: data.main.humidity,
-    VelocidadeDoVento: data.wind.speed,
-    Clima: climaFormatado,
-    Icone: icon,
-    Flag: flag,
-  };
-}
+- Planejamento: definir os requisitos e a arquitetura da aplicação.
+- Desenvolvimento do front-end: criar a interface do usuário e a lógica de interação com o usuário.
+- Desenvolvimento do back-end: criar a lógica de negócios e a comunicação com a API do OpenWeatherMap.
+- Testes: testar a aplicação para garantir que ela funcione corretamente.
 
-**Execução**
-Para executar o sistema de consulta de clima, siga os seguintes passos:
+### Padrões de Codificação
 
-1. Certifique-se de ter o Node.js instalado em seu sistema.
-2. Clone ou baixe os arquivos do projeto.
-3. No terminal, navegue até o diretório do projeto.
-4. Execute o comando npm install para instalar as dependências.
-5. Execute o comando node server.js para iniciar o servidor.
-6. Abra o navegador e acesse http://localhost:3000.
+- JavaScript: seguir as boas práticas de JavaScript, como usar const e let em vez de var, e evitar globais.
+- HTML e CSS: seguir as boas práticas de HTML e CSS, como usar semântica e evitar código redundante.
 
-**Observações**
-Certifique-se de possuir uma chave de API válida do OpenWeatherMap e insira-a no arquivo config.json.
-Este sistema utiliza o CORS para permitir requisições do frontend para o backend. Em produção, é importante configurar corretamente as políticas de CORS de acordo com as necessidades de segurança do seu sistema.
+## Testes
+
+- Testes unitários: testar as funções individuais do código.
+- Testes de integração: testar a interação entre os componentes da aplicação.
+
+## Implantação
+
+### Processo de Implantação
+
+- Hospedagem: hospedar a aplicação em um servidor web.
+- Configuração do domínio: configurar o domínio da aplicação.
+- SSL: configurar o SSL para garantir a segurança da aplicação.
+
+## Requisitos de Infraestrutura
+
+- Servidor web
+- Domínio
+- SSL
+
+## Monitoramento e Segurança
+
+- Monitoramento: monitorar a disponibilidade e o desempenho da aplicação.
+- Segurança: garantir a segurança da aplicação contra vulnerabilidades.
+
+## Manutenção
+
+### Processo de Suporte
+
+- Relatar problemas: os usuários podem relatar problemas com a aplicação.
+- Resolução de problemas: a equipe de suporte resolverá os problemas relatados.
+
+### Processo de Atualizações
+
+- Identificação de melhorias: a equipe de desenvolvimento identificará melhorias e funcionalidades novas.
+- Desenvolvimento de melhorias: a equipe de desenvolvimento implementará as melhorias e funcionalidades novas.
+- Teste de melhorias: os desenvolvedores testarão as melhorias e funcionalidades novas.
+- Implantação de melhorias: as melhorias e funcionalidades novas serão implantadas na aplicação.
+
+## Recursos Adicionais
+
+- Documentação do OpenWeatherMap API: [OpenWeatherMap API](https://openweathermap.org/api)
+- Código-fonte do projeto: [GitHub](https://github.com/juliomarcelo/climate-web-app)
